@@ -68,7 +68,8 @@
   },
   "dependencies": {
     "@types/styled-components": "^5.1.25",
-    "classnames": "^2.3.1"
+    "classnames": "^2.3.1",
+    "react-aria": "^3.18.0"
   },
   "files": [
     "dist",

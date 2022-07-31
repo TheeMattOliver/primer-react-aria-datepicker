@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-type ThingProps = {
+type DatepickerProps = {
   children: React.ReactNode;
 };
 
-export const Thing = ({ children }: ThingProps) => {
+export const Datepicker = ({ children }: DatepickerProps) => {
   return <StyledThing>{children}</StyledThing>;
 };
 
 const StyledThing = styled.div`
-  background: #ff0;
+  background: black;
+  color: white;
 `;
