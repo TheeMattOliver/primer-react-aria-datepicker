@@ -1,19 +1,19 @@
 import React, { ComponentProps } from "react";
 import { Meta, Story } from "@storybook/react";
-import { Thing } from "..";
+import { Datepicker } from "..";
 
-type ThingProps = ComponentProps<typeof Thing>;
+type DatepickerProps = ComponentProps<typeof Datepicker>;
 
 export default {
-  title: "Thing",
-  component: Thing,
+  title: "Datepicker",
+  component: Datepicker,
   parameters: {
     controls: { expanded: true },
   },
 } as Meta;
 
-export const thing = (args: ThingProps) => {
-  return <Thing>the snozzberries taste like snozzberries</Thing>;
+export const thing = (args: DatepickerProps) => {
+  return <Datepicker>the snozzberries taste like snozzberries</Datepicker>;
 };
 thing.argTypes = {};
 thing.args = {};
