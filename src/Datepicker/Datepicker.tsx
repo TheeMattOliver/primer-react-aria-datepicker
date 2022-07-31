@@ -13,4 +13,6 @@ export const Datepicker = ({ children }: DatepickerProps) => {
 const Wrapper = styled(Box)`
   background: ${themeGet("colors.canvas.default")};
   color: ${themeGet("colors.fg.default")};
+  border: 1px solid;
+  border-color: ${themeGet("colors.border.muted")};
 `;
