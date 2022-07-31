@@ -1,6 +1,9 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.1.0/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "your-repo" }],
+  "changelog": [
+    "@changesets/changelog-github",
+    { "repo": "primer-react-aria-datepicker" }
+  ],
   "commit": false,
   "fixed": [],
   "linked": [],

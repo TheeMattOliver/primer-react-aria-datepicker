@@ -1,0 +1,72 @@
+name: Release snapshot
+on:
+  push:
+    branches-ignore:
+      - "main"
+      - "changeset-release/**"
+      - "dependabot/**"
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@main
+        with:
+          # This makes Actions fetch all Git history so that Changesets
+          # can generate changelogs with the correct commits.
+          fetch-depth: 0
+
+      # If you use a version of Node other than 12, change it here.
+      - name: Set up Node.js 12.x
+        uses: actions/setup-node@main
+        with:
+          node-version: 12.x
+
+      - name: Create .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+          init.author.name=Matt Oliver
+          init.author.url=https://mattoliver.xyz
+          init.author.email=mattoliver.mattoliver@gmail.com
+          email=mattoliver.mattoliver@gmail.com
+          registry=https://registry.npmjs.org
+          always-auth=true
+          //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # If you use npm instead of yarn, change this to `npm install`.
+      - name: Install Dependencies
+        run: npm config set registry https://registry.npmjs.org &&
+          npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN &&
+          npm config set email mattoliver.mattoliver@gmail.com &&
+          npm config set _auth $NPM_TOKEN &&
+          npm config set always-auth true &&
+          yarn --update-checksums
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Build
+        run: yarn build
+
+      # Change this to customize your test command.
+      # - name: Test
+      # run: yarn test
+
+      - name: Release snapshot
+        run: |
+          npx changeset version --snapshot
+          npx changeset publish --tag snapshot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Post published version to GitHub checks
+        run: |
+          name=$(jq -r .name package.json)
+          version=$(jq -r .version package.json)
+          npx action-status --context=$name --state=success --description=$version --url="https://unpkg.com/$name@$version/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

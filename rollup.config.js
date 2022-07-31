@@ -25,10 +25,11 @@ export default [
       file: `dist/browser.${format}.js`,
       format,
       sourcemap: true,
-      name: "my-lib",
+      name: "primer-react-aria-datepicker",
       globals: {
         react: "React",
         "react-dom": "ReactDOM",
+        "styled-components": "styled",
       },
     })),
   },
