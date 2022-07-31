@@ -28,6 +28,7 @@
     "build": "./script/build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "start": "yarn storybook",
     "size": "size-limit",
     "release": "yarn build && changeset publish"
   },

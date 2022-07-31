@@ -12,9 +12,9 @@ export default {
   },
 } as Meta;
 
-export const thing = (args: DatepickerProps) => {
+export const datepicker = (args: DatepickerProps) => {
   return <Datepicker>the snozzberries taste like snozzberries</Datepicker>;
 };
-thing.argTypes = {};
-thing.args = {};
-thing.storyName = "Thing";
+datepicker.argTypes = {};
+datepicker.args = {};
+datepicker.storyName = "Datepicker";
