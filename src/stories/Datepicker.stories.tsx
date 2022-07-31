@@ -13,7 +13,7 @@ export default {
 } as Meta;
 
 export const datepicker = (args: DatepickerProps) => {
-  return <Datepicker>the snozzberries taste like snozzberries</Datepicker>;
+  return <Datepicker />;
 };
 datepicker.argTypes = {};
 datepicker.args = {};

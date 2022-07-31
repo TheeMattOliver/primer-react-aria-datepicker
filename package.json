@@ -71,7 +71,8 @@
     "@primer/react": "^35.5.0",
     "@types/styled-components": "^5.1.25",
     "classnames": "^2.3.1",
-    "react-aria": "^3.18.0"
+    "react-aria": "^3.18.0",
+    "react-stately": "^3.16.0"
   },
   "files": [
     "dist",
