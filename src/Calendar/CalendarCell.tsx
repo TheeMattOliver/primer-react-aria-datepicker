@@ -1,14 +1,17 @@
 import React, { ComponentProps } from "react";
 import { Box, themeGet } from "@primer/react";
 import styled from "styled-components";
+
 import { useCalendarCell } from "react-aria";
+import { useFocusRing } from "@react-aria/focus";
 
-interface CalendarCellProps {
-  state: any;
-  date: any;
-}
+type BoxProps = ComponentProps<typeof Box>;
 
-export const CalendarCell = ({ state, date }: CalendarCellProps) => {
+type DateCellProps = {
+  isSelected: boolean;
+};
+
+export const CalendarCell = ({ state, date }) => {
   let ref = React.useRef();
   let {
     cellProps,
@@ -19,19 +22,32 @@ export const CalendarCell = ({ state, date }: CalendarCellProps) => {
     isUnavailable,
     formattedDate,
   } = useCalendarCell({ date }, state, ref);
+  let { focusProps, isFocusVisible } = useFocusRing();
 
   return (
-    <td {...cellProps}>
-      <div
+    <Box as="td" {...cellProps}>
+      <DateCell
         {...buttonProps}
         ref={ref}
         hidden={isOutsideVisibleRange}
+        isSelected={isSelected}
         className={`cell ${isSelected ? "selected" : ""} ${
           isDisabled ? "disabled" : ""
         } ${isUnavailable ? "unavailable" : ""}`}
       >
         {formattedDate}
-      </div>
-    </td>
+      </DateCell>
+    </Box>
   );
 };
+
+const DateCell = styled(Box)<BoxProps & DateCellProps>`
+  background: ${(p) =>
+    p.isSelected
+      ? themeGet("colors.btn.activeBg")
+      : themeGet("colors.canvas.default")};
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

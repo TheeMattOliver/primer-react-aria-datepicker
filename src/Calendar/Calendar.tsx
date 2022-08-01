@@ -5,19 +5,18 @@ import { useCalendar, useLocale } from "react-aria";
 import { useCalendarState } from "react-stately";
 import { createCalendar } from "@internationalized/date";
 
-import { Box, Button, themeGet } from "@primer/react";
+import { Box, Button, Text, themeGet } from "@primer/react";
 
 import { CalendarGrid, CalendarCell } from ".";
 
-type DatepickerProps = {
-  children: React.ReactNode;
-};
-
-export const Datepicker = ({ children, ...props }: DatepickerProps) => {
+/**
+ *
+ * Calendar is pretty special isn't it?
+ */
+export const Calendar = ({ ...props }) => {
   let { locale } = useLocale();
 
   let state = useCalendarState({
-    ...props,
     locale,
     createCalendar,
   });
@@ -31,11 +30,17 @@ export const Datepicker = ({ children, ...props }: DatepickerProps) => {
 
   return (
     <Wrapper {...calendarProps} ref={ref} className="calendar">
-      <Box className="header">
-        <h2>{title}</h2>
-        <Button {...prevButtonProps}>&lt;</Button>
-        <Button {...nextButtonProps}>&gt;</Button>
-      </Box>
+      <CalendarHeader>
+        <Text>{title}</Text>
+        <ButtonWrapper>
+          <Button {...prevButtonProps} variant={`invisible`}>
+            &lt;
+          </Button>
+          <Button {...nextButtonProps} variant={`invisible`}>
+            &gt;
+          </Button>
+        </ButtonWrapper>
+      </CalendarHeader>
       <CalendarGrid state={state} />
     </Wrapper>
   );
@@ -46,4 +51,11 @@ const Wrapper = styled(Box)`
   color: ${themeGet("colors.fg.default")};
   border: 1px solid;
   border-color: ${themeGet("colors.border.muted")};
+  width: fit-content;
+  padding: 16px;
+`;
+const CalendarHeader = styled(Box)``;
+const ButtonWrapper = styled(Box)`
+  display: flex;
+  justify-content: space-between;
 `;
