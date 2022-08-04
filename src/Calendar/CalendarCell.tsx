@@ -11,8 +11,13 @@ type DateCellProps = {
   isSelected: boolean;
 };
 
-export const CalendarCell = ({ state, date }) => {
-  let ref = React.useRef();
+type CalendarCellProps = {
+  state: any;
+  date: any;
+};
+
+export const CalendarCell = ({ state, date }: CalendarCellProps) => {
+  let ref = React.useRef() as React.MutableRefObject<HTMLInputElement>;
   let {
     cellProps,
     buttonProps,
@@ -48,7 +53,7 @@ const GridCell = styled(Box)`
 
 const DateCellBtn = styled(Box)<BoxProps & DateCellProps>`
   padding: ${themeGet("space.2")};
-  border-radius: ${themeGet("radii.2")};
+  border-radius: ${themeGet("radii.1")};
   background: ${(p) =>
     p.isSelected
       ? themeGet("colors.btn.primary.selectedBg")
@@ -64,7 +69,10 @@ const DateCellBtn = styled(Box)<BoxProps & DateCellProps>`
       p.isSelected
         ? themeGet("colors.btn.primary.focusBg")
         : themeGet("colors.btn.hoverBg")};
-    color: ${themeGet("colors.fg.default")};
+    color: ${(p) =>
+      p.isSelected
+        ? themeGet("colors.btn.primary.text")
+        : themeGet("colors.fg.default")};
   }
   &:active {
     cursor: pointer;

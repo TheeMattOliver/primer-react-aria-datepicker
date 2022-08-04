@@ -6,7 +6,11 @@ import { Box, themeGet } from "@primer/react";
 import { CalendarCell } from ".";
 import { Key } from "react";
 
-export const CalendarGrid = ({ state, ...props }) => {
+type CalendarGridProps = {
+  state: any;
+};
+
+export const CalendarGrid = ({ state, ...props }: CalendarGridProps) => {
   let { locale } = useLocale();
   let { gridProps, headerProps, weekDays } = useCalendarGrid(props, state);
 
