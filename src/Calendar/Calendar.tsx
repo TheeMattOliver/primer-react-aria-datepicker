@@ -10,8 +10,7 @@ import { Box, Button, Text, themeGet } from "@primer/react";
 import { CalendarGrid, CalendarCell } from ".";
 
 /**
- *
- * Calendar is pretty special isn't it?
+ * This calendar is pretty special
  */
 export const Calendar = ({ ...props }) => {
   let { locale } = useLocale();

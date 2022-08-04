@@ -4,6 +4,7 @@ import { getWeeksInMonth } from "@internationalized/date";
 import { Box, themeGet } from "@primer/react";
 
 import { CalendarCell } from ".";
+import { Key } from "react";
 
 export const CalendarGrid = ({ state, ...props }) => {
   let { locale } = useLocale();
@@ -26,7 +27,7 @@ export const CalendarGrid = ({ state, ...props }) => {
           <Box as="tr" key={weekIndex}>
             {state
               .getDatesInWeek(weekIndex)
-              .map((date, i) =>
+              .map((date: any, i: Key | null | undefined) =>
                 date ? (
                   <CalendarCell key={i} state={state} date={date} />
                 ) : (

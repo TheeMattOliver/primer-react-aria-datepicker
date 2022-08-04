@@ -18,11 +18,13 @@ export default {
 } as Meta;
 
 export const calendar = (args: CalendarProps) => {
-  let [value, setValue] = React.useState(parseDate("2020-07-31"));
+  let [date, setDate] = React.useState(parseDate("2022-07-31"));
+  let formatter = useDateFormatter({ dateStyle: "full" });
 
   return (
     <>
-      <Calendar value={value} onChange={setValue} />
+      <Calendar value={date} onChange={setDate} {...args} />
+      <p>Selected date: {formatter.format(date.toDate(getLocalTimeZone()))}</p>
     </>
   );
 };

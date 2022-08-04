@@ -25,8 +25,8 @@ export const CalendarCell = ({ state, date }) => {
   let { focusProps, isFocusVisible } = useFocusRing();
 
   return (
-    <Box as="td" {...cellProps}>
-      <DateCell
+    <GridCell as="td" {...cellProps}>
+      <DateCellBtn
         {...buttonProps}
         ref={ref}
         hidden={isOutsideVisibleRange}
@@ -36,18 +36,42 @@ export const CalendarCell = ({ state, date }) => {
         } ${isUnavailable ? "unavailable" : ""}`}
       >
         {formattedDate}
-      </DateCell>
-    </Box>
+      </DateCellBtn>
+    </GridCell>
   );
 };
 
-const DateCell = styled(Box)<BoxProps & DateCellProps>`
+const GridCell = styled(Box)`
+  padding: ${themeGet("space.1")};
+  text-align: center;
+`;
+
+const DateCellBtn = styled(Box)<BoxProps & DateCellProps>`
+  padding: ${themeGet("space.2")};
+  border-radius: ${themeGet("radii.2")};
   background: ${(p) =>
     p.isSelected
-      ? themeGet("colors.btn.activeBg")
+      ? themeGet("colors.btn.primary.selectedBg")
       : themeGet("colors.canvas.default")};
+  color: ${(p) =>
+    p.isSelected
+      ? themeGet("colors.btn.selectedBg")
+      : themeGet("colors.btn.fg.onEmphasis")};
 
   &:hover {
     cursor: pointer;
+    background: ${(p) =>
+      p.isSelected
+        ? themeGet("colors.btn.primary.focusBg")
+        : themeGet("colors.btn.hoverBg")};
+    color: ${themeGet("colors.fg.default")};
+  }
+  &:active {
+    cursor: pointer;
+    background: ${themeGet("colors.btn.primary.selectedBg")};
+    color: ${(p) =>
+      p.isSelected
+        ? themeGet("colors.btn.fg.onEmphasis")
+        : themeGet("colors.fg.default")};
   }
 `;
