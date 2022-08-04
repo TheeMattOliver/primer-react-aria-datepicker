@@ -17,6 +17,7 @@ export const Calendar = ({ ...props }) => {
   let { locale } = useLocale();
 
   let state = useCalendarState({
+    ...props,
     locale,
     createCalendar,
   });

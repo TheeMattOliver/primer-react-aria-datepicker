@@ -82,4 +82,9 @@ const DateCellBtn = styled(Box)<BoxProps & DateCellProps>`
         ? themeGet("colors.btn.fg.onEmphasis")
         : themeGet("colors.fg.default")};
   }
+  .unavailable {
+  }
+  .disabled {
+    color: ${themeGet("colors.btn.primary.disabledText")};
+  }
 `;
