@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from "react";
 import styled from "styled-components";
 
@@ -21,9 +22,11 @@ export const Calendar = ({ ...props }) => {
   });
 
   let ref = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+
   let { calendarProps, prevButtonProps, nextButtonProps, title } = useCalendar(
     props,
-    state
+    state,
+    ref
   );
 
   return (
