@@ -6,9 +6,10 @@ import { useCalendar, useLocale } from "react-aria";
 import { useCalendarState } from "react-stately";
 import { createCalendar, parseDate } from "@internationalized/date";
 
-import { Box, Button, Text, themeGet } from "@primer/react";
+import { Box, Text, themeGet } from "@primer/react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@primer/octicons-react";
 
-import { CalendarGrid, CalendarCell } from ".";
+import { CalendarGrid, CalendarCell, CalendarButton } from ".";
 
 /**
  * This calendar is pretty special
@@ -35,12 +36,12 @@ export const Calendar = ({ ...props }) => {
       <CalendarHeader>
         <Text>{title}</Text>
         <ButtonWrapper>
-          <Button {...prevButtonProps} variant={`invisible`}>
-            &lt;
-          </Button>
-          <Button {...nextButtonProps} variant={`invisible`}>
-            &gt;
-          </Button>
+          <CalendarButton {...prevButtonProps} variant={`invisible`}>
+            <ChevronLeftIcon />
+          </CalendarButton>
+          <CalendarButton {...nextButtonProps} variant={`invisible`}>
+            <ChevronRightIcon />
+          </CalendarButton>
         </ButtonWrapper>
       </CalendarHeader>
       <CalendarGrid state={state} />
@@ -53,6 +54,7 @@ const Wrapper = styled(Box)`
   color: ${themeGet("colors.fg.default")};
   border: 1px solid;
   border-color: ${themeGet("colors.border.muted")};
+  border-radius: ${themeGet("radii.1")};
   width: fit-content;
   padding: 16px;
 `;

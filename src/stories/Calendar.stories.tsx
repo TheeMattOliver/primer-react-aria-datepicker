@@ -18,7 +18,7 @@ export default {
 } as Meta;
 
 export const calendar = (args: CalendarProps) => {
-  let [date, setDate] = React.useState(parseDate("2022-07-31"));
+  let [date, setDate] = React.useState(parseDate("2022-08-03"));
   let formatter = useDateFormatter({ dateStyle: "full" });
 
   return (

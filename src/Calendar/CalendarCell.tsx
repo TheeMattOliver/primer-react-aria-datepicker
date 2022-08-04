@@ -56,27 +56,27 @@ const DateCellBtn = styled(Box)<BoxProps & DateCellProps>`
   border-radius: ${themeGet("radii.1")};
   background: ${(p) =>
     p.isSelected
-      ? themeGet("colors.btn.primary.selectedBg")
+      ? themeGet("colors.btn.selectedBg")
       : themeGet("colors.canvas.default")};
   color: ${(p) =>
     p.isSelected
-      ? themeGet("colors.btn.selectedBg")
+      ? themeGet("colors.btn.text")
       : themeGet("colors.btn.fg.onEmphasis")};
 
   &:hover {
     cursor: pointer;
     background: ${(p) =>
       p.isSelected
-        ? themeGet("colors.btn.primary.focusBg")
+        ? themeGet("colors.btn.activeBg")
         : themeGet("colors.btn.hoverBg")};
     color: ${(p) =>
       p.isSelected
-        ? themeGet("colors.btn.primary.text")
+        ? themeGet("colors.btn.text")
         : themeGet("colors.fg.default")};
   }
   &:active {
     cursor: pointer;
-    background: ${themeGet("colors.btn.primary.selectedBg")};
+    background: ${themeGet("colors.btn.activeBg")};
     color: ${(p) =>
       p.isSelected
         ? themeGet("colors.btn.fg.onEmphasis")
