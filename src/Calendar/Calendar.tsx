@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useCalendar, useLocale } from "react-aria";
 import { useCalendarState } from "react-stately";
-import { createCalendar } from "@internationalized/date";
+import { createCalendar, parseDate } from "@internationalized/date";
 
 import { Box, Button, Text, themeGet } from "@primer/react";
 
@@ -20,11 +20,10 @@ export const Calendar = ({ ...props }) => {
     createCalendar,
   });
 
-  let ref = React.useRef();
+  let ref = React.useRef() as React.MutableRefObject<HTMLInputElement>;
   let { calendarProps, prevButtonProps, nextButtonProps, title } = useCalendar(
     props,
-    state,
-    ref
+    state
   );
 
   return (
